@@ -1,0 +1,38 @@
+
+<div class="container navmargin">
+   <form action="">
+    <div class="input-group has-validation">
+      <span class="input-group-text" id="inputGroupPrepend">Pesquisar</span>
+      <input type="search"  class="form-control"  name="login" aria-describedby="inputGroupPrepend"
+      (keyup)="filter = $event.target.value">
+
+    </div>
+   </form>
+  </div>
+
+<div class="container">
+  <table class="table table-hover">
+    <thead class="table-dark ">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">node_id</th>
+        <th scope="col">Login</th>
+        <th scope="col">Followers url</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users | filterDescription: filter |paginate: { itemsPerPage: 5, currentPage: paginaAtual }; let i = index">
+        <td>{{user.id}}</td>
+        <td>{{user.node_id}}</td>
+        <td>{{user.login }}</td>
+        <td>{{user.followers_url}}</td>
+    </tr>
+    </tbody>
+
+
+  </table>
+  <div class="center">
+    <pagination-controls (pageChange)="paginaAtual = $event"></pagination-controls>
+
+  </div>
+</div>
